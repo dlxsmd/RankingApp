@@ -11,7 +11,7 @@ import Vapor
 struct PlayerController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
         let players = routes.grouped("players")
-        players.post(use: create)
+        players.post(use: create) 
         players.get("top", use: getTop)
     }
 
