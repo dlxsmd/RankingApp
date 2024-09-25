@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ランキング</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>ランキング</h1>
+    <table id="ranking-table">
+        <thead>
+            <tr>
+                <th>順位</th>
+                <th>名前</th>
+                <th>スコア</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- ランキングデータがここに挿入されます -->
+        </tbody>
+    </table>
+
+    <script>
+        // APIからランキングデータを取得してテーブルに表示
+        async function fetchRanking() {
+            const response = await fetch('/players/top');
+            const players = await response.json();
+
+            const tableBody = document.querySelector('#ranking-table tbody');
+            tableBody.innerHTML = '';
+
+            players.forEach((player, index) => {
+                const row = document.createElement('tr');
+
+                const rankCell = document.createElement('td');
+                rankCell.textContent = index + 1;
+                row.appendChild(rankCell);
+
+                const nameCell = document.createElement('td');
+                nameCell.textContent = player.name;
+                row.appendChild(nameCell);
+
+                const scoreCell = document.createElement('td');
+                scoreCell.textContent = player.score;
+                row.appendChild(scoreCell);
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        // ページ読み込み時にランキングを取得
+        window.onload = fetchRanking;
+    </script>
+</body>
+</html>
