@@ -1,13 +1,22 @@
 import NIOSSL
 import Fluent
-import FluentSQLiteDriver
+import FluentPostgresDriver
 import Vapor
 
 // configures your application
 public func configure(_ app: Application) async throws {
     // uncomment to serve files from /Public folder
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
-    app.databases.use(.sqlite(.file("db.sqlite")), as: .sqlite)
+    // Postgresデータベースの設定
+    
+    app.databases.use(.postgres(
+            hostname: Environment.get("DB_HOST") ?? "localhost",
+            port: Environment.get("DB_PORT").flatMap(Int.init(_:)) ?? PostgresConfiguration.ianaPortNumber,
+            username: Environment.get("DB_USER") ?? "vapor",
+            password: Environment.get("DB_PASSWORD") ?? "password",
+            database: Environment.get("DB_NAME") ?? "vapor"
+        ), as: .psql)
+    
     app.migrations.add(CreatePlayer())
     try app.autoMigrate().wait()
     try routes(app)
