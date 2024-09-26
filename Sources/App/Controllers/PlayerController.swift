@@ -13,6 +13,7 @@ struct PlayerController: RouteCollection {
         let players = routes.grouped("players")
         players.post(use: create) 
         players.get("top", use: getTop)
+        players.get("all",use: getAll)
     }
 
     // プレイヤーを作成するエンドポイント
@@ -26,6 +27,13 @@ struct PlayerController: RouteCollection {
         return Player.query(on: req.db)
             .sort(\.$score, .descending)
             .limit(10)
+            .all()
+    }
+    
+    //すべてのプレイヤーのスコアを表示する
+    func getAll(req: Request) throws -> EventLoopFuture<[Player]> {
+        return Player.query(on: req.db)
+            .sort(\.$score,.descending)
             .all()
     }
 }
