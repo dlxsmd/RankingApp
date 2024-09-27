@@ -11,7 +11,8 @@ import Vapor
 struct PlayerController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
         let players = routes.grouped("players")
-        players.post(use: create) 
+        players.post(use: create)
+        players.delete(use: delete)
         players.get("top", use: getTop)
         players.get("all",use: getAll)
     }
@@ -20,6 +21,12 @@ struct PlayerController: RouteCollection {
     func create(req: Request) throws -> EventLoopFuture<Player> {
         let player = try req.content.decode(Player.self)
         return player.save(on: req.db).map { player }
+    }
+    
+    func delete(req: Request) throws -> EventLoopFuture<HTTPStatus> {
+        return Player.query(on: req.db)
+            .delete()
+            .transform(to: .noContent)
     }
 
     // トップスコアのプレイヤーを取得するエンドポイント
