@@ -23,6 +23,7 @@ struct PlayerController: RouteCollection {
         return player.save(on: req.db).map { player }
     }
     
+    // プレイヤーデータを削除するエントリーポイント
     func delete(req: Request) throws -> EventLoopFuture<HTTPStatus> {
         return Player.query(on: req.db)
             .delete()
