@@ -29,12 +29,6 @@ let package = Package(
             ],
             swiftSettings: swiftSettings
         ),
-        .executableTarget(
-                    name: "Sites",
-                    dependencies: [
-                        .product(name: "Ignite", package: "Ignite")
-                    ]
-                ),
         .testTarget(
             name: "AppTests",
             dependencies: [
