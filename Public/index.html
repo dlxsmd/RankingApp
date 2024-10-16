@@ -7,21 +7,41 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
         }
         h1 {
             text-align: center;
+            color: #00796b;
         }
         table {
             margin: 0 auto;
             border-collapse: collapse;
             width: 80%;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         th, td {
             border: 1px solid #ddd;
             padding: 8px;
+            text-align: center;
         }
         th {
             background-color: #f2f2f2;
+        }
+        .first-place {
+            background-color: gold;
+            font-weight: bold;
+            color: #fff;
+        }
+        .second-place {
+            background-color: silver;
+            font-weight: bold;
+            color: #fff;
+        }
+        .third-place {
+            background-color: #cd7f32; /* 銅色 */
+            font-weight: bold;
+            color: #fff;
         }
     </style>
 </head>
@@ -63,6 +83,15 @@
                 const scoreCell = document.createElement('td');
                 scoreCell.textContent = player.score;
                 row.appendChild(scoreCell);
+
+                // 1, 2, 3位に特別なスタイルを適用
+                if (index === 0) {
+                    row.classList.add('first-place');
+                } else if (index === 1) {
+                    row.classList.add('second-place');
+                } else if (index === 2) {
+                    row.classList.add('third-place');
+                }
 
                 tableBody.appendChild(row);
             });

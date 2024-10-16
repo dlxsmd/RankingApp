@@ -14,7 +14,8 @@ let package = Package(
         // 🪶 Fluent driver for Postgres.
         .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0"),
         // 🔵 Non-blocking, event-driven networking for Swift. Used for custom executors
-        .package(url: "https://github.com/apple/swift-nio.git", from: "2.65.0")
+        .package(url: "https://github.com/apple/swift-nio.git", from: "2.65.0"),
+        .package(url: "https://github.com/twostraws/Ignite.git", branch: "main"),
     ],
     targets: [
         .executableTarget(
@@ -28,6 +29,12 @@ let package = Package(
             ],
             swiftSettings: swiftSettings
         ),
+        .executableTarget(
+                    name: "Sites",
+                    dependencies: [
+                        .product(name: "Ignite", package: "Ignite")
+                    ]
+                ),
         .testTarget(
             name: "AppTests",
             dependencies: [
