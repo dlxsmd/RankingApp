@@ -19,12 +19,20 @@ final class Player: Model, Content {
 
     @Field(key: "score")
     var score: Int
+    
+    @Field(key: "createdAt")
+    var createdAt: Date
+    
+    @Field(key: "email")
+    var email: String?
 
     init() {}
 
-    init(id: UUID? = nil, name: String, score: Int) {
+    init(id: UUID? = nil, name: String, score: Int, createdAt: Date = Date(), email: String? = nil) {
         self.id = id
         self.name = name
         self.score = score
+        self.createdAt = createdAt
+        self.email = email
     }
 }
