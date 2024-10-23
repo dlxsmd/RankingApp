@@ -14,6 +14,7 @@ struct PlayerController: RouteCollection {
         players.post(use: create)
         players.delete(use: delete)
         players.get("top", use: getTop)
+        players.get("today", use: getToday)
         players.get("all",use: getAll)
     }
 
@@ -35,6 +36,15 @@ struct PlayerController: RouteCollection {
         return Player.query(on: req.db)
             .sort(\.$score, .descending)
             .limit(10)
+            .all()
+    }
+    
+    func getToday(req: Request) throws -> EventLoopFuture<[Player]> {
+        let today = Date()
+        return Player.query(on: req.db)
+            .filter(\.$createdAt, .greaterThan, today)
+            .sort(\.$score, .descending)
+            .limit(1)
             .all()
     }
     
