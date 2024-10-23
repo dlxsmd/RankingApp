@@ -13,7 +13,7 @@ struct CreatePlayer: Migration {
             .id()
             .field("name", .string, .required)
             .field("score", .int, .required)
-            .field("createdAt", .string, .required)
+            .field("createdAt", .date, .required)
             .field("email", .string, .required)
             .create()
     }
