@@ -21,7 +21,7 @@ final class Player: Model, Content {
     var score: Int
     
     @Field(key: "createdAt")
-    var createdAt: Date
+    var createdAt: String
     
     @Field(key: "email")
     var email: String
