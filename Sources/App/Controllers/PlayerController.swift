@@ -40,11 +40,19 @@ struct PlayerController: RouteCollection {
     }
     
     func getToday(req: Request) throws -> EventLoopFuture<[Player]> {
-        let today = Date()
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: Date())
+        
+        // Calculate end of day by adding one day and subtracting a second
+        guard let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)?.addingTimeInterval(-1) else {
+            throw Abort(.internalServerError)
+        }
+        
         return Player.query(on: req.db)
-            .filter(\.$createdAt, .greaterThan, today)
+            .filter(\.$createdAt >= startOfDay)
+            .filter(\.$createdAt <= endOfDay)
             .sort(\.$score, .descending)
-            .limit(3)
+            .limit(1)
             .all()
     }
     
