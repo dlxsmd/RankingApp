@@ -44,7 +44,7 @@ struct PlayerController: RouteCollection {
         return Player.query(on: req.db)
             .filter(\.$createdAt, .greaterThan, today)
             .sort(\.$score, .descending)
-            .limit(1)
+            .limit(3)
             .all()
     }
     
