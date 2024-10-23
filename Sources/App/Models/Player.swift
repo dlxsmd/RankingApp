@@ -28,7 +28,7 @@ final class Player: Model, Content {
 
     init() {}
 
-    init(id: UUID? = nil, name: String, score: Int, createdAt: Date, email: String) {
+    init(id: UUID? = nil, name: String, score: Int, createdAt: String, email: String) {
         self.id = id
         self.name = name
         self.score = score
