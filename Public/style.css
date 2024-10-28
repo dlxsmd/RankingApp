@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0f7fa;
+}
+
+h1 {
+    text-align: center;
+    color: #00796b;
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 80%;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.first-place {
+    background-color: gold;
+    font-weight: bold;
+    color: #fff;
+}
+
+.second-place {
+    background-color: silver;
+    font-weight: bold;
+    color: #fff;
+}
+
+.third-place {
+    background-color: #cd7f32;
+    font-weight: bold;
+    color: #fff;
+}
+
+#searchInput {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    width: 80%;
+    font-size: 16px;
+}
