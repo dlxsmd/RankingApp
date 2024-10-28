@@ -2,20 +2,31 @@ let players = []; // グローバル変数としてプレイヤーデータを�
 
 // APIからランキングデータを取得してテーブルに表示
 async function fetchRanking() {
-    const response = await fetch('/players/top');
-    players = await response.json();
+    const response = await fetch('/players/all');
+    const rawPlayers = await response.json();
+    players = calculateGlobalRankings(rawPlayers);
     displayRanking(players);
+}
+
+// 全体のランキングを計算する関数
+function calculateGlobalRankings(rawPlayers) {
+    return rawPlayers
+        .sort((a, b) => b.score - a.score)
+        .map((player, index) => ({
+            ...player,
+            rank: index + 1
+        }));
 }
 
 function displayRanking(playersToDisplay) {
     const tableBody = document.querySelector('#ranking-table tbody');
     tableBody.innerHTML = '';
 
-    playersToDisplay.forEach((player, index) => {
+    playersToDisplay.forEach((player) => {
         const row = document.createElement('tr');
 
         const rankCell = document.createElement('td');
-        rankCell.textContent = index + 1;
+        rankCell.textContent = player.rank;
         row.appendChild(rankCell);
 
         const nameCell = document.createElement('td');
@@ -27,11 +38,11 @@ function displayRanking(playersToDisplay) {
         row.appendChild(scoreCell);
 
         // 1, 2, 3位に特別なスタイルを適用
-        if (index === 0) {
+        if (player.rank === 1) {
             row.classList.add('first-place');
-        } else if (index === 1) {
+        } else if (player.rank === 2) {
             row.classList.add('second-place');
-        } else if (index === 2) {
+        } else if (player.rank === 3) {
             row.classList.add('third-place');
         }
 
