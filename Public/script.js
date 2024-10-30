@@ -23,7 +23,7 @@ function calculateGlobalRankings(rawPlayers) {
 function displayRanking(playersToDisplay) {
     const tableBody = document.querySelector('#ranking-table tbody');
     tableBody.innerHTML = '';
-    playersToDisplay.forEach((player) => {
+    playersToDisplay.forEach((player, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${player.rank}</td>
@@ -37,7 +37,15 @@ function displayRanking(playersToDisplay) {
         } else if (player.rank === 3) {
             row.classList.add('third-place');
         }
+        row.style.opacity = '0';
+        row.style.transform = 'translateY(20px)';
         tableBody.appendChild(row);
+        
+        setTimeout(() => {
+            row.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            row.style.opacity = '1';
+            row.style.transform = 'translateY(0)';
+        }, 50 * index);
     });
 }
 
