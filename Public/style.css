@@ -1,108 +1,86 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #e0f7fa;
+    background-color: #ffffff;
+    color: #2e7d32;
     margin: 0;
     padding: 0;
-    transition: background-color 0.3s ease;
+    line-height: 1.6;
 }
 
 .container {
-    max-width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 0.5s ease forwards;
-}
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 h1 {
     text-align: center;
-    color: #00796b;
-    font-size: 32px;
+    color: #1b5e20;
+    font-size: 36px;
     margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 table {
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    background-color: #ffffff;
+    border-collapse: collapse;
+    box-shadow: 0 0 20px rgba(46, 125, 50, 0.1);
+    border-radius: 8px;
     overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-table:hover {
-    transform: scale(1.01);
 }
 
 th, td {
-    border: none;
     padding: 15px;
     text-align: center;
-    transition: background-color 0.3s ease;
+    border-bottom: 1px solid #e8f5e9;
 }
 
 th {
-    background-color: #00796b;
-    color: white;
+    background-color: #4caf50;
+    color: #ffffff;
     font-weight: bold;
-}
-
-tr:nth-child(even) {
-    background-color: rgba(224, 247, 250, 0.5);
+    text-transform: uppercase;
 }
 
 tr:hover {
-    background-color: rgba(0, 121, 107, 0.1);
+    background-color: #e8f5e9;
 }
 
 .first-place, .second-place, .third-place {
     font-weight: bold;
-    color: #333;
-    transition: all 0.3s ease;
 }
 
 .first-place {
-    background-color: rgba(255, 215, 0, 0.6);
+    background-color: #c8e6c9;
 }
 
 .second-place {
-    background-color: rgba(192, 192, 192, 0.6);
+    background-color: #e8f5e9;
 }
 
 .third-place {
-    background-color: rgba(205, 127, 50, 0.6);
-}
-
-.first-place:hover, .second-place:hover, .third-place:hover {
-    transform: scale(1.05);
+    background-color: #f1f8e9;
 }
 
 #searchInput {
     display: block;
     margin: 20px auto;
-    padding: 15px;
-    width: calc(100% - 30px);
+    padding: 12px 20px;
+    width: calc(100% - 40px);
     font-size: 16px;
-    border: none;
+    border: 2px solid #4caf50;
     border-radius: 25px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    outline: none;
+    transition: border-color 0.3s ease;
 }
 
 #searchInput:focus {
-    outline: none;
-    box-shadow: 0 0 20px rgba(0, 121, 107, 0.3);
+    border-color: #1b5e20;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     table {
         font-size: 14px;
     }
@@ -112,11 +90,11 @@ tr:hover {
     }
 
     h1 {
-        font-size: 24px;
+        font-size: 28px;
     }
 
     #searchInput {
         font-size: 14px;
-        padding: 12px;
+        padding: 10px 15px;
     }
 }
