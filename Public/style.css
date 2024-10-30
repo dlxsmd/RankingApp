@@ -1,25 +1,33 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #e0f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 100%;
+    padding: 15px;
 }
 
 h1 {
     text-align: center;
     color: #00796b;
+    font-size: 24px;
 }
 
 table {
-    margin: 0 auto;
-    border-collapse: collapse;
-    width: 80%;
+    width: 100%;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
 }
 
 th, td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 10px;
     text-align: center;
+    font-size: 14px;
 }
 
 th {
@@ -29,25 +37,45 @@ th {
 .first-place {
     background-color: gold;
     font-weight: bold;
-    color: #fff;
+    color: #333;
 }
 
 .second-place {
     background-color: silver;
     font-weight: bold;
-    color: #fff;
+    color: #333;
 }
 
 .third-place {
     background-color: #cd7f32;
     font-weight: bold;
-    color: #fff;
+    color: #333;
 }
 
 #searchInput {
     display: block;
     margin: 20px auto;
     padding: 10px;
-    width: 80%;
+    width: calc(100% - 20px);
     font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    #searchInput {
+        font-size: 14px;
+    }
 }
